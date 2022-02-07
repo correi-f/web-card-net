@@ -1,0 +1,142 @@
+swagger: "2.0"
+info:
+  description: "This is an awesome card game 🃏🃏 ! Test it !!"
+  version: "1.0.0"
+  title: "Card game"
+  contact:
+    email: "fcorreia@webnet.fr"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/"
+tags:
+  - name: "order"
+    description: "Get the color or card order of the game"
+  - name: "play"
+    description: "Play the game !"
+schemes:
+  - "https"
+  - "http"
+parameters:
+  idPlayer:
+    in: query
+    name: "playerId"
+    required: true
+    type: "string"
+paths:
+  /order/colors:
+    post:
+      tags:
+        - "order"
+      summary: "Get the color order"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "#/parameters/idPlayer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Color"
+        "400":
+          description: "Bad request"
+  /order/values:
+    post:
+      tags:
+        - "order"
+      summary: "Get the value order"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "#/parameters/idPlayer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CardValue"
+        "400":
+          description: "Bad request"
+  /play/cards:
+    get:
+      tags:
+        - "play"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "#/parameters/idPlayer"
+        - in: query
+          name: cardNumber
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Card"
+        "400":
+          description: "Bad request"
+  /order/cards:
+    post:
+      tags:
+        - "play"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "#/parameters/idPlayer"
+        - in: body
+          name: "hand"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Card"
+      responses:
+        "201":
+          description: "successful operation"
+        "400":
+          description: "Bad request"
+definitions:
+  Card:
+    type: "object"
+    properties:
+      color:
+        $ref: "#/definitions/Color"
+      value:
+        $ref: "#/definitions/CardValue"
+  Color:
+    type: "string"
+    enum:
+      - Carreau
+      - Coeur
+      - Pique
+      - Trèfle
+  CardValue:
+    type: "string"
+    enum:
+      - AS
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+      - "6"
+      - "7"
+      - "8"
+      - "9"
+      - "10"
+      - Valet
+      - Dame
+      - Roi
