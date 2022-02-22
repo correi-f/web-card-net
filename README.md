@@ -59,7 +59,7 @@ Nous devons rendre le projet dans 3H ce qui ne nous laisse plus beaucoup de temp
 ### Le projet
 Pour cela, vous disposer d'un projet SpringBoot, Java 8, embarquant une base de données H2 mysql en mémoire. Merci de respecter ce socle pour vos développements (Montée de version de Java acceptée).
 C'est une api Rest comme vous pouvez le voir, et vous devez suivre le contrat d'interface du swagger-ui.yml. (Vous pouvez le visualiser via swagger editor)
-Le développeur a eu une approche code first mais si vous souhaitez faire du design first avec Springfox ou autre, vous pouvez. La base de données ne comporte que deux tables pour le moment, il faudra l'enrichir pour pouvoir réaliser les différentes US.
+Le développeur a eu une approche code first mais si vous souhaitez faire de l'api first avec openapi ou autre, vous pouvez. La base de données ne comporte que deux tables pour le moment, il faudra l'enrichir pour pouvoir réaliser les différentes US.
 
 La base H2 offre une console intégrée vous permettant de faire des requêtes : http://localhost:8080/console
 
